@@ -2,20 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground: #000;
-  --background: #fff;
+@font-face {
+  font-family: 'TT Commons';
+  src: url('/fonts/TTCommons-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-[data-theme="dark"] {
-  --foreground: #fff;
-  --background: #000;
+@font-face {
+  font-family: 'TT Commons';
+  src: url('/fonts/TTCommons-DemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
 }
 
-body {
-  @apply transition-colors duration-200;
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #191E29;
+  }
+
+  [data-theme="dark"] {
+    --background: #191E29;
+    --foreground: #FFFFFF;
+  }
 }
 
+/* Transitions pour le changement de thème */
 * {
-  @apply border-foreground/20;
+  @apply border-swissborg-gray/20;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Animation du fond */
+body {
+  @apply bg-background text-foreground font-tt-commons min-h-screen;
+  transition: background 500ms ease-in-out;
+  background: radial-gradient(
+    circle at top right,
+    var(--swissborg-darker) 0%,
+    var(--background) 100%
+  );
+}
+
+/* Animation du bouton de thème */
+.theme-switch-button {
+  @apply relative overflow-hidden;
+}
+
+.theme-switch-button svg {
+  @apply transform transition-transform duration-500;
+}
+
+.theme-switch-button:hover svg {
+  @apply scale-110;
+}
+
+/* Animation des cartes */
+.card-animation {
+  @apply transform transition-all duration-300;
+}
+
+.card-animation:hover {
+  @apply scale-105 bg-swissborg-primary/30 dark:bg-swissborg-secondary/30;
 }

@@ -8,7 +8,20 @@ const config = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'swissborg': {
+          dark: '#1a1e29',    // Couleur sombre du fond
+          secondary: '#132d46',  // Couleur plus sombre
+          primary: '#01c38e', // Couleur verte principale
+          gray: '#6a6e79',    // Couleur grise
+          light: '#FFFFFF'    // Couleur claire
+        }
+      },
+      fontFamily: {
+        'tt-commons': ['TT Commons', 'sans-serif']
+      }
+    },
   },
   darkMode: "class",
   plugins: [nextui()]
