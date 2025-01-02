@@ -2,20 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'TT Commons';
+  src: url('/fonts/TTCommons-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
+@font-face {
+  font-family: 'TT Commons';
+  src: url('/fonts/TTCommons-DemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #FFFFFF;
+    --foreground: #191E29;
+    --swissborg-darker: #132d46;
+  }
+
+  [data-theme="dark"] {
+    --background: #191E29;
+    --foreground: #FFFFFF;
+    --swissborg-darker: #0a1525;
   }
 }
 
+/* Transitions pour le changement de thème */
+* {
+  @apply border-swissborg-gray/20;
+}
+
+/* Animation globale pour le changement de thème */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 2;
+}
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* Animation du fond */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground font-tt-commons min-h-screen;
+  transition: 
+    color 0.3s linear,
+    background-color 0.3s linear;
+}
+
+/* Animation du bouton de thème */
+.theme-switch-button {
+  @apply relative overflow-hidden;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.theme-switch-button svg {
+  @apply transform transition-all duration-500;
+}
+
+.theme-switch-button:hover svg {
+  @apply scale-110;
+}
+
+/* Animation des cartes */
+.card-animation {
+  @apply transform transition-all duration-500;
+  transition: 
+    transform 0.3s ease,
+    background-color 0.3s linear,
+    box-shadow 0.3s ease;
+}
+
+.card-animation:hover {
+  @apply scale-105;
+  background-color: rgba(1, 195, 142, 0.1);
+  box-shadow: 0 0 20px rgba(1, 195, 142, 0.2);
+}
+
+.dark .card-animation:hover {
+  background-color: rgba(19, 45, 70, 0.3);
+  box-shadow: 0 0 20px rgba(19, 45, 70, 0.4);
+}
+
+/* Animation des textes */
+h1, h2, h3, p {
+  transition: color 0.2s linear;
 }

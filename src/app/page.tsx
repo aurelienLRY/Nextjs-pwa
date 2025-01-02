@@ -1,101 +1,128 @@
-import Image from "next/image";
+"use client";
+
+import { ThemeSwitch } from "@/components/theme-switch";
+import DemoButton from "@/components/Button/demo.button";
+import { Tabs, Tab, Card } from "@nextui-org/react";
+import DemoInput from "@/components/Input/demo.input";
+import DemoCard from "@/components/Card/demo.card";
+import DemoTable from "@/components/Table/demo.table";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen">
+      {/* Navbar */}
+      <nav className="w-full h-16 border-b border-swissborg-gray/20 px-6 flex items-center justify-between fixed top-0 bg-background/80 backdrop-blur-md z-50">
+        <h1 className="text-xl font-semibold text-swissborg-primary">Swissborg UI</h1>
+        <ThemeSwitch />
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      {/* Main Content */}
+      <main className="pt-20 px-6 pb-20">
+        <Tabs 
+          aria-label="Components" 
+          color="primary" 
+          variant="underlined"
+          classNames={{
+            tabList: "gap-6 w-full relative rounded-none p-0 border-b border-swissborg-gray/20",
+            cursor: "w-full bg-swissborg-primary",
+            tab: "max-w-fit px-0 h-12",
+            tabContent: "group-data-[selected=true]:text-swissborg-primary"
+          }}
+        >
+          <Tab key="colors" title="Couleurs & Style">
+            <Card className="mt-6 p-6">
+              {/* Section Couleurs */}
+              <section className="mb-16">
+                <h2 className="text-3xl font-semibold mb-8 text-swissborg-primary">Couleurs</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                  {/* Primary */}
+                  <div className="card-animation rounded-xl overflow-hidden">
+                    <div className="h-32 bg-swissborg-primary"></div>
+                    <div className="p-4 bg-background/80 backdrop-blur-sm">
+                      <h3 className="font-semibold">Primary</h3>
+                      <p className="text-sm text-swissborg-gray">#01C38E</p>
+                    </div>
+                  </div>
+                  {/* Secondary */}
+                  <div className="card-animation rounded-xl overflow-hidden">
+                    <div className="h-32 bg-swissborg-secondary"></div>
+                    <div className="p-4 bg-background/80 backdrop-blur-sm">
+                      <h3 className="font-semibold">Secondary</h3>
+                      <p className="text-sm text-swissborg-gray">#132D46</p>
+                    </div>
+                  </div>
+                  {/* Dark */}
+                  <div className="card-animation rounded-xl overflow-hidden">
+                    <div className="h-32 bg-swissborg-dark"></div>
+                    <div className="p-4 bg-background/80 backdrop-blur-sm">
+                      <h3 className="font-semibold">Dark</h3>
+                      <p className="text-sm text-swissborg-gray">#1A1E29</p>
+                    </div>
+                  </div>
+                  {/* Gray */}
+                  <div className="card-animation rounded-xl overflow-hidden">
+                    <div className="h-32 bg-swissborg-gray"></div>
+                    <div className="p-4 bg-background/80 backdrop-blur-sm">
+                      <h3 className="font-semibold">Gray</h3>
+                      <p className="text-sm text-swissborg-gray">#6A6E79</p>
+                    </div>
+                  </div>
+                  {/* Light */}
+                  <div className="card-animation rounded-xl overflow-hidden">
+                    <div className="h-32 bg-swissborg-light"></div>
+                    <div className="p-4 bg-background/80 backdrop-blur-sm">
+                      <h3 className="font-semibold">Light</h3>
+                      <p className="text-sm text-swissborg-gray">#FFFFFF</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Section Typographie */}
+              <section>
+                <h2 className="text-3xl font-semibold mb-8 text-swissborg-primary">Typographie</h2>
+                <div className="space-y-8">
+                  <div className="card-animation p-6 rounded-xl bg-swissborg-primary/10 dark:bg-swissborg-secondary/20 backdrop-blur-sm">
+                    <h3 className="text-2xl font-semibold mb-4">TT Commons</h3>
+                    <div className="space-y-4">
+                      <p className="text-4xl font-normal">Regular - The quick brown fox jumps over the lazy dog</p>
+                      <p className="text-4xl font-semibold">DemiBold - The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </Card>
+          </Tab>
+
+          <Tab key="buttons" title="Boutons">
+            <Card className="mt-6 p-6">
+              <h2 className="text-2xl font-semibold mb-6">Boutons</h2>
+              <DemoButton />
+            </Card>
+          </Tab>
+
+          <Tab key="inputs" title="Inputs">
+            <Card className="mt-6 p-6">
+              <h2 className="text-2xl font-semibold mb-6">Champs de saisie</h2>
+              <DemoInput />
+            </Card>
+          </Tab>
+
+          <Tab key="cards" title="Cards">
+            <Card className="mt-6 p-6">
+              <h2 className="text-2xl font-semibold mb-6">Cartes</h2>
+              <DemoCard />
+            </Card>
+          </Tab>
+
+          <Tab key="tables" title="Tables">
+            <Card className="mt-6 p-6">
+              <h2 className="text-2xl font-semibold mb-6">Tableaux</h2>
+              <DemoTable />
+            </Card>
+          </Tab>
+        </Tabs>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
