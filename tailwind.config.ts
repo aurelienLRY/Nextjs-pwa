@@ -11,11 +11,11 @@ const config = {
     extend: {
       colors: {
         'swissborg': {
-          dark: '#1a1e29',    // Couleur sombre du fond
-          secondary: '#132d46',  // Couleur plus sombre
-          primary: '#01c38e', // Couleur verte principale
-          gray: '#6a6e79',    // Couleur grise
-          light: '#FFFFFF'    // Couleur claire
+          dark: '#1a1e29',    
+          secondary: '#132d46',  
+          primary: '#01c38e', 
+          gray: '#6a6e79',    
+          light: '#FFFFFF'    
         }
       },
       fontFamily: {
@@ -24,7 +24,39 @@ const config = {
     },
   },
   darkMode: "class",
-  plugins: [nextui()]
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: "#01c38e",
+              foreground: "#FFFFFF",
+            },
+            secondary: {
+              DEFAULT: "#132d46",
+              foreground: "#FFFFFF",
+            },
+            focus: "#01c38e",
+          },
+        },
+        dark: {
+          colors: {
+            primary: {
+              DEFAULT: "#01c38e",
+              foreground: "#FFFFFF",
+            },
+            secondary: {
+              DEFAULT: "#132d46",
+              foreground: "#FFFFFF",
+            },
+            focus: "#01c38e",
+            background: "#1a1e29",
+          },
+        },
+      },
+    }),
+  ],
 };
 
 export default config;

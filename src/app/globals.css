@@ -20,40 +20,58 @@
   :root {
     --background: #FFFFFF;
     --foreground: #191E29;
+    --swissborg-darker: #132d46;
   }
 
   [data-theme="dark"] {
     --background: #191E29;
     --foreground: #FFFFFF;
+    --swissborg-darker: #0a1525;
   }
 }
 
 /* Transitions pour le changement de thème */
 * {
   @apply border-swissborg-gray/20;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+}
+
+/* Animation globale pour le changement de thème */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 2;
+}
+.dark::view-transition-new(root) {
+  z-index: 1;
 }
 
 /* Animation du fond */
 body {
   @apply bg-background text-foreground font-tt-commons min-h-screen;
-  transition: background 500ms ease-in-out;
-  background: radial-gradient(
-    circle at top right,
-    var(--swissborg-darker) 0%,
-    var(--background) 100%
-  );
+  transition: 
+    color 0.3s linear,
+    background-color 0.3s linear;
 }
 
 /* Animation du bouton de thème */
 .theme-switch-button {
   @apply relative overflow-hidden;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .theme-switch-button svg {
-  @apply transform transition-transform duration-500;
+  @apply transform transition-all duration-500;
 }
 
 .theme-switch-button:hover svg {
@@ -62,9 +80,25 @@ body {
 
 /* Animation des cartes */
 .card-animation {
-  @apply transform transition-all duration-300;
+  @apply transform transition-all duration-500;
+  transition: 
+    transform 0.3s ease,
+    background-color 0.3s linear,
+    box-shadow 0.3s ease;
 }
 
 .card-animation:hover {
-  @apply scale-105 bg-swissborg-primary/30 dark:bg-swissborg-secondary/30;
+  @apply scale-105;
+  background-color: rgba(1, 195, 142, 0.1);
+  box-shadow: 0 0 20px rgba(1, 195, 142, 0.2);
+}
+
+.dark .card-animation:hover {
+  background-color: rgba(19, 45, 70, 0.3);
+  box-shadow: 0 0 20px rgba(19, 45, 70, 0.4);
+}
+
+/* Animation des textes */
+h1, h2, h3, p {
+  transition: color 0.2s linear;
 }
